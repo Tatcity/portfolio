@@ -1,4 +1,4 @@
-// src/components/Layout.jsx
+// src/components/Layout.jsx 
 import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import Footer from "./Footer";
@@ -7,14 +7,8 @@ import ScrollToTop from "./ScrollToTop";
 export default function Layout() {
   const [open, setOpen] = useState(false);
 
-  const FALLBACKS = [
-    `${import.meta.env.BASE_URL}assets/logo.png`,
-    `${import.meta.env.BASE_URL}assets/project3.jpg`,
-    `${import.meta.env.BASE_URL}assets/project3.jpeg`,
-    `${import.meta.env.BASE_URL}assets/project1.jpg`,
-  ];
-  const [logoIndex, setLogoIndex] = useState(0);
-  const logoSrc = FALLBACKS[Math.min(logoIndex, FALLBACKS.length - 1)];
+  // === Use only your main logo ===
+  const logoSrc = `${import.meta.env.BASE_URL}assets/logo.png`;
 
   const navItems = [
     { to: "/", label: "Home", end: true },
@@ -27,7 +21,7 @@ export default function Layout() {
 
   // === Set your actual profile URLs ===
   const linkedInUrl = "https://www.linkedin.com/in/your-handle-here/";
-  const githubUrl   = "https://github.com/your-handle-here";
+  const githubUrl   = "https://github.com/tatcity";
 
   // === The images you put in /public/assets/ ===
   const linkedInImg = `${import.meta.env.BASE_URL}assets/linkedin.png`;
@@ -43,14 +37,7 @@ export default function Layout() {
               src={logoSrc}
               alt="Logo"
               className="logo"
-              onError={(e) => {
-                const next = logoIndex + 1;
-                if (next < FALLBACKS.length) {
-                  setLogoIndex(next);
-                } else {
-                  e.currentTarget.style.display = "none";
-                }
-              }}
+              onError={(e) => (e.currentTarget.style.display = "none")}
             />
             <div className="brand-stack">
               <span className="brand-name">Marlon Haynes</span>
@@ -237,8 +224,7 @@ export default function Layout() {
         }
         .social-pic-link:hover { background: rgba(255,255,255,0.12); }
         .social-pic {
-          width: px; height: 40px;
-
+          width: auto; height: 40px;
           display: block;
         }
 
