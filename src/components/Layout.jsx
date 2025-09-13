@@ -30,7 +30,7 @@ export default function Layout() {
   return (
     <div className="app-shell">
       <header className="site-header">
-        <div className="header-inner">
+        <div className="header-inner container">
           {/* Brand (logo + name) */}
           <div className="brand">
             <img
@@ -165,7 +165,7 @@ export default function Layout() {
         </div>
       </header>
 
-      <main className="site-main">
+      <main className="site-main container">
         <ScrollToTop behavior="smooth" />
         <Outlet />
       </main>
@@ -175,9 +175,14 @@ export default function Layout() {
       <style jsx="true">{`
         font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 16px;
+        }
+
         .site-header {
-          position: sticky;
-          top: 0;
+          position: relative; /* scrolls away instead of sticking */
           z-index: 50;
           backdrop-filter: saturate(130%) blur(8px);
           background: rgba(10, 12, 18, 0.8);
@@ -186,7 +191,7 @@ export default function Layout() {
         }
         .header-inner {
           width: 100%;
-          padding: 16px 24px;
+          padding: 16px 0;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -271,8 +276,9 @@ export default function Layout() {
         .mobile-socials { display: flex; gap: 12px; margin-top: 8px; }
 
         .site-main {
-          flex: 1; width: 100%;
-          padding: 16px 24px 32px;
+          flex: 1;
+          width: 100%;
+          padding: 16px 0 32px;
           display: flow-root;
         }
 
